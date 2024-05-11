@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB0Vwdpxf_J5kBFhvlELgJz4HN-8Dl2SWg",
+  apiKey: import.meta.env.VITE_GITHUB_KEY,
   authDomain: "nwitter-reloaded-8ce0e.firebaseapp.com",
   projectId: "nwitter-reloaded-8ce0e",
   storageBucket: "nwitter-reloaded-8ce0e.appspot.com",

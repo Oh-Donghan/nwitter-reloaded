@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_GITHUB_KEY,
@@ -12,4 +14,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+// user 로그인 정보 (firebase authentication)
 export const auth = getAuth(app);
+
+// 이미지 첨부 저장소 (firebase storage)
+export const storage = getStorage(app);
+
+// 게시글 정보 저장소 (firebase database)
+export const db = getFirestore(app);

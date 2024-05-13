@@ -1,6 +1,7 @@
 import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import styled from 'styled-components';
 import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Button = styled.span`
   margin-top: 50px;
@@ -23,10 +24,17 @@ const Logo = styled.img`
 `;
 
 export default function GithubButton() {
+  const navigate = useNavigate();
   const onClick = async () => {
     try {
       const provider = new GithubAuthProvider();
       await signInWithPopup(auth, provider);
+      // 구글 로그인
+      // const pv = new GoogleAuthProvider();
+      // await signInWithPopup(auth, pv);
+      // 비밀번호 재설정
+      // sendPasswordResetEmail();
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

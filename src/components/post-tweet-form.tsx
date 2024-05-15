@@ -75,7 +75,7 @@ export default function PostTweetForm() {
     if (files && files.length === 1) {
       // 파일 크기가 1mb를 넘으면 안됨
       if (files[0].size > FILE_SIZE_MAX_LIMIT) {
-        alert("The maximum capacity that can be uploaded is 1mb");
+        alert('The maximum capacity that can be uploaded is 1mb');
         return;
       }
       setFile(files[0]);
@@ -100,7 +100,7 @@ export default function PostTweetForm() {
         createdAt: Date.now(),
         // 유저이름은 username에 저장, displayName이 존재하지 않으면 Anonymous(익명)라고 설정
         username: user.displayName || 'Anonymous',
-        // 트윗을 삭제할 권한을 줄때 id를 매칭하기 위해 설정
+        // 트윗을 삭제할 권한을 줄때 id를 매칭하기 위해 설정 -> Tweet.tsx
         userId: user.uid,
       });
       // 파일 첨부가 필수는 아니기에 파일 첨부 여부 확인
@@ -109,15 +109,12 @@ export default function PostTweetForm() {
         // 첨부파일(이미지) tweets 폴더(컬렉션)에 해당 유저의 폴더안에 저장하기
         // 이미지를 빠르게 찾기 위해서는 이미지의 이름은 이미지가 업로드된 트윗의 id인게 좋다
         // 그래야 트윗이 삭제 되었을 때도, 해당 트윗의 이미지를 빠르게 삭제할 수 있다.
-        const locationRef = ref(
-          storage,
-          `tweets/${user.uid}-${user.displayName}/${doc.id}`
-        );
+        const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(result.ref);
         await updateDoc(doc, {
           photo: url,
-        })
+        });
       }
       setTweet('');
       setFile(null);

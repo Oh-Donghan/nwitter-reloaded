@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Layout from './components/Layout';
 import Home from './routes/home';
 import Profile from './routes/profile';
 import Login from './routes/login';
@@ -10,6 +9,7 @@ import { useEffect, useState } from 'react';
 import LoadingScreen from './components/Loading-screen';
 import { auth } from './firebase';
 import ProtectedRoute from './components/Protected-route';
+import Layout from './components/Layout';
 
 // Layout이 Home과 Profile을 감싸고 있기 때문에 
 // Home과 Profile을 각각 감싸주지 않아도된다.
